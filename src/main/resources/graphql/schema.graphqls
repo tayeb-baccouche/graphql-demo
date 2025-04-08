@@ -1,15 +1,27 @@
-type User {
+type UserDTO {
   id: ID!
   name: String!
   email: String!
 }
 
+input UserInput {
+  name: String!
+  email: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: String
+}
+
 type Query {
-  users: [User!]!
-  user(id: ID!): User
+  users: [UserDTO!]!
+  user(id: ID!): UserDTO
 }
 
 type Mutation {
-  createUser(name: String!, email: String!): User
+  createUser(input: UserInput!): UserDTO
+  updateUser(input: UpdateUserInput!): UserDTO
   deleteUser(id: ID!): Boolean
 }
